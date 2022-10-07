@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import ape1 from "./assets/ape3.webp";
 import ape2 from "./assets/ape2.webp";
+import { checkout } from "../checkout";
 
 export default function Home() {
   return (
@@ -16,16 +17,31 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className="text-[50px]  font-bold">Buy my physical NFTs</h1>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+        <div className="flex p-12 space-x-12 bg-gray-200 rounded-[1rem] mt-8">
+          <div>
             <Image src={ape1} width="332" height="232" className="" />
-            <p>Hape NFT GoldGrill 30000$</p>
-          </a>
+            <p className="p-2 pl-0 font-semibold">Hape NFT GoldGrill 30000$</p>
+            <button
+              className="bg-blue-400 p-2 rounded-full"
+              onClick={() => {
+                checkout({
+                  lineItems: [
+                    {
+                      price: "price_1Lq751FBNhegP7zVseChWL3m",
+                      quantity: 1,
+                    },
+                  ],
+                });
+              }}
+            >
+              Checkout
+            </button>
+          </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <div>
             <Image src={ape2} width="332" height="232" />
-            <p>Hape NFT Banana 100.000$</p>
-          </a>
+            <p className="p-2 pl-0 font-semibold">Hape NFT Banana 100.000$</p>
+          </div>
         </div>
       </main>
     </div>
